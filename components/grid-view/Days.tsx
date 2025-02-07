@@ -19,7 +19,7 @@ const Days = () => {
   const [selectedDayObj, setSelectedDayObj] = useState<{
     date: Date;
     nepaliDate: number;
-  } | null>(null); // Track specific dayObj
+  } | null>(null);
 
   const [selectedNotes, setSelectedNotes] = useState<string>("");
   useEffect(() => {
@@ -113,14 +113,14 @@ const Days = () => {
               {getNepaliDay(nepaliDate)}
             </span>
             {festival && (
-              <div className="absolute bottom-1 left-2 text-xs text-primary bg-red-200 p-1 rounded-sm">
+              <div className="absolute hidden md:flex bottom-1 left-2 text-xs text-primary bg-red-200 p-1 rounded-sm">
                 {festival.name}
               </div>
             )}
             <Button
               variant={"outline"}
-              className="absolute bottom-0 right-0 px-2 rounded-sm"
-              onClick={() => openNoteModal(dayObj)} // Pass specific dayObj
+              className="absolute bottom-0 right-0 px-2 rounded-sm md:w-8 md:h-6 w-2 h-2"
+              onClick={() => openNoteModal(dayObj)}
             >
               +
             </Button>

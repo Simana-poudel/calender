@@ -41,7 +41,7 @@ const TopHeadingContent = () => {
         <TabsTrigger value="grid">Grid</TabsTrigger>
         <TabsTrigger value="list">List</TabsTrigger>
       </TabsList>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row items-center justify-between">
         <div>
           <Button variant="ghost" onClick={decrementMonth}>
             <ChevronLeft />
@@ -60,7 +60,7 @@ const TopHeadingContent = () => {
       </div>
       {!nameParam && (
         <TabsContent
-          className="justify-center items-center mt-4 mb-10 h-[700px]"
+          className="justify-center items-center mt-4 mb-10 h-[400px] md:h-[700px]"
           value="grid"
         >
           <Week />
