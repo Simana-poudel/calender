@@ -23,7 +23,9 @@ const Days = () => {
 
   const [selectedNotes, setSelectedNotes] = useState<string>("");
   useEffect(() => {
-    const storedNotes = JSON.parse(localStorage.getItem("notes") || "[]");
+    const storedNotes = JSON.parse(
+      (window && window.localStorage.getItem("notes")) || "[]"
+    );
     setNotes(storedNotes);
   }, []);
 
@@ -60,7 +62,12 @@ const Days = () => {
     return day ? day.nepali : englishDay;
   };
 
-  const openNoteModal = (dayObj: any) => {
+  const openNoteModal = (
+    dayObj: {
+      date: Date;
+      nepaliDate: number;
+    } | null
+  ) => {
     setSelectedDayObj(dayObj);
     setOpenAddNoteModal(true);
   };

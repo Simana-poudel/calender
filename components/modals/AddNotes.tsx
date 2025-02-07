@@ -15,11 +15,16 @@ type NoteStoreState = {
 };
 
 const useNoteStore = create<NoteStoreState>((set) => ({
-  notes: JSON.parse(localStorage.getItem("notes") || "[]"),
+  notes:
+    typeof window !== "undefined" && window.localStorage.getItem("notes")
+      ? JSON.parse(window.localStorage.getItem("notes")!)
+      : [],
   addNote: (newNote) =>
     set((state) => {
       const updatedNotes = [...state.notes, newNote];
-      localStorage.setItem("notes", JSON.stringify(updatedNotes));
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("notes", JSON.stringify(updatedNotes));
+      }
       return { notes: updatedNotes };
     }),
 }));

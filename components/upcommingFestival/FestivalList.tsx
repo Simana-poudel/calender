@@ -1,11 +1,19 @@
 "use client";
-
 import React from "react";
 import { useSearchParams } from "next/navigation";
 import CustomPageHeader from "../reusable/custom-page-header";
 import { FestivalData } from "@/data/festivalData";
+import { Suspense } from "react";
 
 const FestivalList = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <FestivalListContent />
+    </Suspense>
+  );
+};
+
+const FestivalListContent = () => {
   const searchParams = useSearchParams();
   const nameParam = searchParams.get("name")?.toLowerCase();
 
