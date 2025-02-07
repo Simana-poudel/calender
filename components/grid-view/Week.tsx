@@ -1,50 +1,21 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-
-const days = [
-  {
-    index: 1,
-    name: "Sun",
-  },
-  {
-    index: 2,
-    name: "Mon",
-  },
-  {
-    index: 3,
-    name: "Tue",
-  },
-  {
-    index: 4,
-    name: "Wed",
-  },
-  {
-    index: 5,
-    name: "Thu",
-  },
-  {
-    index: 6,
-    name: "Fri",
-  },
-  {
-    index: 7,
-    name: "Sat",
-  },
-];
-
+import { weekData } from "@/data/weekData";
 const Week = () => {
+  const now = new Date();
+  const WeekNum = now.getDay();
   return (
     <div className="grid grid-cols-7 gap-4">
-      {days.map((day) => (
+      {weekData.map((day, index) => (
         <div
-          key={day.index}
+          key={index}
           className={cn(
             "text-center text-base uppercase text-[#707070]",
-            day.name === "Mon" &&
+            index === WeekNum &&
               "text-[#707070] underline underline-offset-[18px] decoration-primary"
           )}
         >
-          {day.name}
+          {day.nepali}
         </div>
       ))}
     </div>
