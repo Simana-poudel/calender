@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { dateData } from "@/data/datesData";
 import { useMonthStore } from "@/services/zustand/useMonthStore";
 import { FestivalData } from "@/data/festivalData";
 import { daysData } from "@/data/daysData";
+import Note from "../modals/AddNotes";
+import { cn } from "@/lib/utils";
+import AddNote from "../modals/NotesData";
 
 const Days = () => {
   const today = new Date().toISOString().split("T")[0];
   const { currentMonthIndex } = useMonthStore((state) => state);
+  const [notes, setNotes] = useState<
+    { date: { date: string }; note: string }[]
+  >([]);
+  const [openAddNoteModal, setOpenAddNoteModal] = useState(false);
+  const [openNotes, setOpenNotes] = useState(false);
+  const [selectedDayObj, setSelectedDayObj] = useState<{
+    date: Date;
+    nepaliDate: number;
+  } | null>(null); // Track specific dayObj
+
+  const [selectedNotes, setSelectedNotes] = useState<string>("");
+  useEffect(() => {
+    const storedNotes = JSON.parse(localStorage.getItem("notes") || "[]");
+    setNotes(storedNotes);
+  }, []);
 
   const activeMonthData = dateData[currentMonthIndex];
 
@@ -32,14 +50,19 @@ const Days = () => {
     nepaliDate++;
   }
 
-  const getFestival = (date: any) => {
+  const getFestival = (date: Date) => {
     const dateStr = date.toISOString().split("T")[0];
     return FestivalData.find((festival) => festival.date === dateStr);
   };
 
-  const getNepaliDay = (englishDay: any) => {
+  const getNepaliDay = (englishDay: number) => {
     const day = daysData.find((item) => item.english === String(englishDay));
     return day ? day.nepali : englishDay;
+  };
+
+  const openNoteModal = (dayObj: any) => {
+    setSelectedDayObj(dayObj);
+    setOpenAddNoteModal(true);
   };
 
   return (
@@ -54,13 +77,34 @@ const Days = () => {
           date.toISOString().split("T")[0] === today ? "bg-green-200" : "";
         const festival = getFestival(date);
         const isFestival = festival ? "text-primary bg-red-100" : "";
+        const hasNoteForDate = (date: Date) => {
+          return notes.some((note) => note.date.date === date.toISOString());
+        };
+        const hasNote = hasNoteForDate(date)
+          ? "border-b border-gray-500 w-[40px] flex justify-center "
+          : "";
 
+        const handleNoteOpen = (date: Date) => {
+          const filteredNotes = notes.filter(
+            (note) => note.date.date === date.toISOString()
+          );
+          if (filteredNotes.length > 0) {
+            setSelectedNotes(filteredNotes[0].note);
+            setOpenNotes(true);
+          }
+        };
         return (
           <div
             key={index}
-            className={`text-[#707070] relative text-base justify-center items-center flex border border-red-100 rounded-sm ${isToday} ${isFestival}`}
+            className={cn(
+              `text-[#707070] relative text-base justify-center items-center flex border border-red-100 rounded-sm ${isToday} ${isFestival}`,
+              hasNoteForDate(date) && "cursor-pointer hover:bg-red-100"
+            )}
+            onClick={() => handleNoteOpen(date)}
           >
-            {getNepaliDay(nepaliDate)}
+            <span className={`nepali-date ${hasNote}`}>
+              {getNepaliDay(nepaliDate)}
+            </span>
             {festival && (
               <div className="absolute bottom-1 left-2 text-xs text-primary bg-red-200 p-1 rounded-sm">
                 {festival.name}
@@ -69,9 +113,24 @@ const Days = () => {
             <Button
               variant={"outline"}
               className="absolute bottom-0 right-0 px-2 rounded-sm"
+              onClick={() => openNoteModal(dayObj)} // Pass specific dayObj
             >
               +
             </Button>
+            {openAddNoteModal && (
+              <Note
+                onClose={() => setOpenAddNoteModal(false)}
+                isOpen={openAddNoteModal}
+                dayObj={selectedDayObj}
+              />
+            )}
+            {openNotes && (
+              <AddNote
+                notes={selectedNotes}
+                isOpen={openNotes}
+                onClose={() => setOpenNotes(false)}
+              />
+            )}
           </div>
         );
       })}
