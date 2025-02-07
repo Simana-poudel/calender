@@ -15,7 +15,7 @@ const CustomSearch = ({ placeholder }: CustomSearchProps) => {
   const [debouncedInputValue, setDebouncedInputValue] = React.useState("");
   const router = useRouter();
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 

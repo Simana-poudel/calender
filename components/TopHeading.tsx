@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import CustomPageHeader from "./reusable/custom-page-header";
 import CustomSearch from "./reusable/custom-search";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,6 +12,14 @@ import { dateData } from "@/data/datesData"; // Month data
 import { useSearchParams } from "next/navigation";
 
 const TopHeading = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TopHeadingContent />
+    </Suspense>
+  );
+};
+
+const TopHeadingContent = () => {
   const { currentMonthIndex, incrementMonth, decrementMonth, nepaliYear } =
     useMonthStore((state) => state);
   const searchParams = useSearchParams();
