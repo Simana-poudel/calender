@@ -1,38 +1,65 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 import CustomPageHeader from "./reusable/custom-page-header";
 import CustomSearch from "./reusable/custom-search";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "./ui/button";
 import Week from "./grid-view/Week";
 import Days from "./grid-view/Days";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useMonthStore } from "@/services/zustand/useMonthStore"; // Zustand store
+import { dateData } from "@/data/datesData"; // Month data
+import { useSearchParams } from "next/navigation";
 
 const TopHeading = () => {
-  return (
-    <div>
-      <Tabs defaultValue="grid" className=" h-[800px] bg-red-200">
-        <TabsList>
-          <TabsTrigger value="grid">Grid</TabsTrigger>
-          <TabsTrigger value="list">List</TabsTrigger>
-        </TabsList>
-        <div className="flex items-center justify-between">
-          <div>
-            <Button variant="ghost">{`<`}</Button>
-            <Button variant="ghost">{`>`}</Button>
-          </div>
-          <CustomPageHeader title="February 2025" />
+  const { currentMonthIndex, incrementMonth, decrementMonth, nepaliYear } =
+    useMonthStore((state) => state);
+  const searchParams = useSearchParams();
+  const nameParam = searchParams.get("name")?.toLowerCase();
+  const currentMonthData = dateData[currentMonthIndex];
+  const nepaliMonth = currentMonthData
+    ? currentMonthData.month
+    : "Invalid Month";
 
-          <CustomSearch placeholder="Search" />
+  const prevMonthIndexRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    prevMonthIndexRef.current = currentMonthIndex;
+  }, [currentMonthIndex]);
+
+  return (
+    <Tabs defaultValue="grid max-h-[700px]">
+      <TabsList>
+        <TabsTrigger value="grid">Grid</TabsTrigger>
+        <TabsTrigger value="list">List</TabsTrigger>
+      </TabsList>
+      <div className="flex items-center justify-between">
+        <div>
+          <Button variant="ghost" onClick={decrementMonth}>
+            <ChevronLeft />
+          </Button>
+          <Button variant="ghost" onClick={incrementMonth}>
+            <ChevronRight />
+          </Button>
         </div>
+        <div className="flex items-center justify-center">
+          <CustomPageHeader title={nepaliMonth} />
+          <span className="text-gray-300 font-light text-2xl">
+            {nepaliYear}
+          </span>
+        </div>
+        <CustomSearch placeholder="Search" />
+      </div>
+      {!nameParam && (
         <TabsContent
-          className="justify-center items-center bg-gray-400 h-[700px]"
+          className="justify-center items-center mt-4 mb-10 h-[700px]"
           value="grid"
         >
           <Week />
           <Days />
         </TabsContent>
-        <TabsContent value="list">list</TabsContent>
-      </Tabs>
-    </div>
+      )}
+    </Tabs>
   );
 };
 
