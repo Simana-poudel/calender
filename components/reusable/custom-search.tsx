@@ -29,12 +29,12 @@ const CustomSearch = ({ placeholder }: CustomSearchProps) => {
   useEffect(() => {
     const currentUrl = new URL(window.location.href);
     const searchParams = new URLSearchParams(currentUrl.search);
-    const currentSearch = searchParams.get("search") || "";
+    const currentSearch = searchParams.get("name") || "";
 
     if (debouncedInputValue !== currentSearch) {
       if (debouncedInputValue) {
         router.push(
-          `${currentUrl.origin}${currentUrl.pathname}?search=${debouncedInputValue}`
+          `${currentUrl.origin}${currentUrl.pathname}?name=${debouncedInputValue}`
         );
       } else {
         router.push(`${currentUrl.origin}${currentUrl.pathname}`);
