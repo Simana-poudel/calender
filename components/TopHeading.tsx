@@ -1,20 +1,21 @@
 "use client";
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { dateData } from "@/data/datesData";
+import { useMonthStore } from "@/services/zustand/useMonthStore";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useRef, useState } from "react";
+import Days from "./grid-view/Days";
+import Week from "./grid-view/Week";
 import CustomPageHeader from "./reusable/custom-page-header";
 import CustomSearch from "./reusable/custom-search";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TopHeadingSkeleton from "./skeleton/TopHeadinigSkeleton";
 import { Button } from "./ui/button";
-import Week from "./grid-view/Week";
-import Days from "./grid-view/Days";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useMonthStore } from "@/services/zustand/useMonthStore";
-import { dateData } from "@/data/datesData";
-import { useSearchParams } from "next/navigation";
 import Filter from "./upcommingFestival/Filter";
 
 const TopHeading = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<TopHeadingSkeleton />}>
       <TopHeadingContent />
     </Suspense>
   );

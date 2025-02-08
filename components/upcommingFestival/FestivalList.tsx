@@ -4,10 +4,11 @@ import { useSearchParams } from "next/navigation";
 import CustomPageHeader from "../reusable/custom-page-header";
 import { FestivalData } from "@/data/festivalData";
 import { Suspense } from "react";
+import FestivalListSkeleton from "../skeleton/FestivalSkeleton";
 
 const FestivalList = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<FestivalListSkeleton />}>
       <FestivalListContent />
     </Suspense>
   );
