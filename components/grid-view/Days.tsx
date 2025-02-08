@@ -109,9 +109,22 @@ const Days = () => {
             )}
             onClick={() => handleNoteOpen(date)}
           >
-            <span className={`nepali-date ${hasNote}`}>
+            <span
+              className={`nepali-date ${hasNote} cursor-pointer`}
+              onMouseEnter={(e) => {
+                const target = e.target as HTMLSpanElement;
+                target.style.transform = "translateY(-5px)";
+                target.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+              }}
+              onMouseLeave={(e) => {
+                const target = e.target as HTMLSpanElement;
+                target.style.transform = "translateY(0)";
+                target.style.boxShadow = "none";
+              }}
+            >
               {getNepaliDay(nepaliDate)}
             </span>
+
             {festival && (
               <div className="absolute hidden md:flex bottom-1 left-2 text-xs text-primary bg-red-200 p-1 rounded-sm">
                 {festival.name}

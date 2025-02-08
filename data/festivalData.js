@@ -3,6 +3,7 @@ export const FestivalData = [
     name: "माघे संक्रान्ति",
     title: "Maghe Sankranti",
     date: "2025-01-14",
+    month: "माघ",
     description:
       "जाडो यामको अन्त्य र लामो दिनहरूको सुरुवात हुने चाड। घ्यू र तिलबाट बनेका परिकारहरूको परिकारसँग मनाइन्छ।",
   },
@@ -10,6 +11,7 @@ export const FestivalData = [
     name: "सरस्वती पूजा (बसन्त पञ्चमी)",
     title: "Saraswati Puja (Vasant Panchami)",
     date: "2025-02-05",
+    month: "माघ",
     description:
       "विद्या र कलाकी देवी सरस्वतीको पूजा गरिने चाड। विद्यार्थीहरूले आफ्ना किताब र सामग्रीहरूको पूजा गर्छन्।",
   },
@@ -17,6 +19,7 @@ export const FestivalData = [
     name: "महाशिवरात्रि",
     title: "Maha Shivaratri",
     date: "2025-02-26",
+    month: "फाल्गुण",
     description:
       "भगवान शिवको उपासना गरी ब्रत बस्ने र पशुपतिनाथ मन्दिरमा विशेष पूजा गर्ने पर्व।",
   },
@@ -24,6 +27,7 @@ export const FestivalData = [
     name: "लोसार (तिब्बती नयाँ वर्ष)",
     title: "Losar (Tibetan New Year)",
     date: "2025-02-28",
+    month: "फाल्गुण",
     description:
       "शेर्पा र तिब्बती समुदायले नाचगान र पारिवारिक जमघटसहित मनाउने चाड।",
   },
@@ -31,6 +35,7 @@ export const FestivalData = [
     name: "फागु पूर्णिमा (होली)",
     title: "Fagu Purnima (Holi)",
     date: "2025-03-14",
+    month: "फाल्गुण",
     description:
       "रङहरूको चाड जसले वसन्त ऋतुको आगमनलाई सूचित गर्दछ। मानिसहरूले रङ्गहरू छर्केर खुसी मनाउँछन्।",
   },
@@ -38,12 +43,14 @@ export const FestivalData = [
     name: "घोडे जात्रा",
     title: "Ghode Jatra",
     date: "2025-03-24",
+    month: "चैत",
     description: "काठमाडौंको टुंडीखेलमा घोडा दौड र कौशल प्रदर्शन गरिने पर्व।",
   },
   {
     name: "नेपाली नयाँ वर्ष २०८२ (बिस्केट जात्रा)",
     title: "Nepali New Year 2082 (Bisket Jatra)",
     date: "2025-04-14",
+    month: "वैशाख",
     description:
       "नेपाली पात्रोको नयाँ वर्षको सुरुवात। भक्तपुरमा विशेष झाँकी र समारोह।",
   },
@@ -51,6 +58,7 @@ export const FestivalData = [
     name: "बुद्ध पूर्णिमा",
     title: "Buddha Purnima",
     date: "2025-05-12",
+    month: "वैशाख",
     description:
       "भगवान गौतम बुद्धको जन्म, ज्ञान प्राप्ति र महापरिनिर्वाणको स्मरण। लुम्बिनीमा विशेष पूजा।",
   },
@@ -58,6 +66,7 @@ export const FestivalData = [
     name: "रतो मच्छिन्द्रनाथ जात्रा",
     title: "Rato Machhindranath Jatra",
     date: "2025-05-15",
+    month: "जेठ",
     description:
       "पाटनमा मनाइने प्राचीन जात्रा, जहाँ वर्षा देवता मच्छिन्द्रनाथको रथ यात्रा गरिन्छ।",
   },
@@ -65,6 +74,7 @@ export const FestivalData = [
     name: "रोपाइँ जात्रा",
     title: "Ropain Jatra",
     date: "2025-06-29",
+    month: "असार",
     description:
       "धान रोपाइँको समयमा गाउँमा गीतगाउने र नाचगान गर्दै खेतमा धान रोप्ने परम्परा।",
   },
@@ -72,6 +82,7 @@ export const FestivalData = [
     name: "गाई जात्रा",
     title: "Gai Jatra",
     date: "2025-08-18",
+    month: "श्रावण",
     description:
       "गाईको पूजा गरी दिवंगत आत्माहरूको उद्धारको लागि परेड निकाल्ने पर्व।",
   },
@@ -79,6 +90,7 @@ export const FestivalData = [
     name: "जनै पूर्णिमा",
     title: "Janai Purnima",
     date: "2025-08-19",
+    month: "श्रावण",
     description:
       "हिन्दू पुरुषहरूले जनै फेर्ने र दिदीबहिनीहरूले दाजुभाइलाई रक्षाबन्धन बाँध्ने पर्व।",
   },
@@ -86,12 +98,14 @@ export const FestivalData = [
     name: "कृष्ण जन्माष्टमी",
     title: "Krishna Janmashtami",
     date: "2025-08-26",
+    month: "भाद्र",
     description: "भगवान श्रीकृष्णको जन्मको उत्सव। मध्यरातमा विशेष पूजा गरिन्छ।",
   },
   {
     name: "तीज",
     title: "Teej",
     date: "2025-09-05",
+    month: "भाद्र",
     description:
       "महिलाहरूले व्रत बसेर शिव–पार्वतीको पूजा गर्ने र नाचगानसहित मनाउने पर्व।",
   },
@@ -99,6 +113,7 @@ export const FestivalData = [
     name: "इन्द्र जात्रा",
     title: "Indra Jatra",
     date: "2025-09-21",
+    month: "भाद्र",
     description:
       "काठमाडौंमा मनाइने सप्ताहव्यापी पर्व जहाँ मुखौटे नृत्य र रथयात्रा गरिन्छ। यस पर्वमा इन्द्रध्वज स्थापना र कुमारि रथयात्रा मुख्य आकर्षण हुन्छन्।",
   },
@@ -106,6 +121,7 @@ export const FestivalData = [
     name: "दशैं",
     title: "Dashain",
     date: "2025-09-22",
+    month: "असोज",
     description:
       "नेपालको सबैभन्दा ठूलो चाड, जहाँ देवी दुर्गाको पूजा गरिन्छ र परिवारसँग जमघट गरिन्छ।",
   },
@@ -113,6 +129,7 @@ export const FestivalData = [
     name: "तिहार (दीपावली)",
     title: "Tihar (Deepawali)",
     date: "2025-10-20",
+    month: "कार्तिक",
     description:
       "पाँच दिनसम्म मनाइने चाड, जहाँ काग, कुकुर र गाईको पूजा गरिन्छ र घरमा दीप प्रज्वलन गरिन्छ।",
   },
@@ -120,6 +137,7 @@ export const FestivalData = [
     name: "छठ पूजा",
     title: "Chhath Puja",
     date: "2025-10-27",
+    month: "कार्तिक",
     description:
       "सूर्य देवताको उपासना गरिने पर्व। भक्तजनहरू नदीमा स्नान गरी सूर्यलाई अर्घ दिन्छन्।",
   },
@@ -127,6 +145,7 @@ export const FestivalData = [
     name: "योमरी पुन्हि",
     title: "Yomari Punhi",
     date: "2025-12-07",
+    month: "मङ्सिर",
     description:
       "धानको भण्डारण सम्पन्न भएको अवसरमा नेवार समुदायले योमरी परिकार बनाएर मनाउने पर्व।",
   },
@@ -134,6 +153,7 @@ export const FestivalData = [
     name: "तमु ल्होसार",
     title: "Tamu Lhosar",
     date: "2025-12-30",
+    month: "पुष",
     description:
       "गुरुङ समुदायको नयाँ वर्ष, जहाँ परम्परागत गीत, नृत्य र भोजसहित मनाइन्छ।",
   },

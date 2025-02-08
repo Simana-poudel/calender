@@ -8,7 +8,6 @@ import {
 import React, { useEffect, useState } from "react";
 import { create } from "zustand";
 
-// Zustand store to manage notes state
 type NoteStoreState = {
   notes: NoteData[];
   addNote: (newNote: NoteData) => void;
@@ -31,7 +30,7 @@ const useNoteStore = create<NoteStoreState>((set) => ({
 
 type NoteData = {
   date: {
-    date: string; // Store as string for serialization
+    date: string;
     nepaliDate: number;
   };
   note: string;
@@ -45,14 +44,14 @@ interface NoteProps {
   isOpen?: boolean;
   onClose?: () => void;
 }
+
 const Note = ({ dayObj, isOpen, onClose }: NoteProps) => {
   const [note, setNote] = useState<string>("");
   const [noteExists, setNoteExists] = useState<boolean>(false);
   const notes = useNoteStore((state) => state.notes);
   const addNote = useNoteStore((state) => state.addNote);
-  console.log(dayObj);
+
   useEffect(() => {
-    // Check if a note exists for the current date
     const existingNote = notes.find(
       (n) => n.date.date === dayObj?.date.toISOString()
     );
@@ -64,29 +63,25 @@ const Note = ({ dayObj, isOpen, onClose }: NoteProps) => {
   };
 
   const handleSaveNote = () => {
-    if (note.trim() === "") return; // Do not save empty notes
+    if (note.trim() === "") return;
 
     const newNoteData: NoteData = {
       date: {
-        date: dayObj ? dayObj.date.toISOString() : "", // Convert Date to string for localStorage
+        date: dayObj ? dayObj.date.toISOString() : "",
         nepaliDate: dayObj?.nepaliDate ?? 0,
       },
       note: note,
     };
 
-    addNote(newNoteData); // Add note to Zustand store and persist in localStorage
-    setNote(""); // Clear input after saving
-    setNoteExists(true); // Prevent further edits
+    addNote(newNoteData);
+    setNote("");
+    setNoteExists(true);
+
+    window.location.reload();
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      {/* <DialogTrigger
-          className={cn(noteExists ? " cursor-not-allowed" : "cursor-pointer")}
-          disabled={noteExists}
-        >
-          +
-        </DialogTrigger> */}
       {!noteExists && (
         <DialogContent>
           <DialogHeader>
